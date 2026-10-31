@@ -1,0 +1,57 @@
+package p9;
+
+public class CuentaBancaria {
+	private double saldo;
+	private String titular;
+	
+	public CuentaBancaria(double saldo, String titular){
+		this.saldo=saldo;
+		this.titular=titular;
+	}
+	
+	public double getSaldo() {
+		return saldo;
+	}
+	
+	public void setSaldo(double saldo) {
+		if (saldo<0) {
+			saldo=0;
+		}
+	}
+	
+	public String getTitular() {
+		return titular;
+	}
+	
+	public void setTitular(String titular) {
+		if(titular==null) {
+			System.out.println("La cuenta debe tener un nombre para crearla");
+		}
+	}
+	
+	public void Depositar(double monto) {
+		if(monto>0 && monto<=15000) {
+			this.saldo+=monto;
+			System.out.println("Depósito exitoso");
+		}
+		else if(monto>15000) {
+			System.out.println("El monto no puede superar los 15000 pesos");
+		}
+		else {
+			System.out.println("El monto debe ser mayor a 0");
+		}
+	}
+	
+	public void Retirar(double monto) {
+		if(monto>0 && monto<=saldo) {
+			this.saldo-=monto;
+			System.out.println("Retiro exitoso");
+		}
+		else if(monto>saldo) {
+			System.out.println("Fondos insuficientes");
+		}
+		else {
+			System.out.println("El monto debe ser mayor a 0");
+		}
+	}
+}
