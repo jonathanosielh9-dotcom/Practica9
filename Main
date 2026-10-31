@@ -1,0 +1,58 @@
+package p9;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner read = new Scanner(System.in);
+		String titular;
+		int op;
+		double monto;
+		
+		System.out.println("Ingrese el nombre de la cuenta");
+		titular=read.next();
+		CuentaBancaria cuenta = new CuentaBancaria(1000, titular);
+		cuenta.setTitular(titular);
+		System.out.println("La cuenta fué creada con exito, se le agregó 1000 pesos a su cuenta");
+		System.out.println("¿Desea retirar, depositar o ver sus saldo actual?");
+		System.out.println("1)Retirar");
+		System.out.println("2)Depositar");
+		System.out.println("3)Ver saldo");
+		System.out.println("4)Ver titular");
+		System.out.println("-1)Salir");
+		do {
+			op=read.nextInt();
+			switch(op){
+				case 1:
+					System.out.println("Ingrese la cantidad a retirar");
+					monto=read.nextDouble();
+					cuenta.Retirar(monto);
+					System.out.println("Su saldo es: " + cuenta.getSaldo());
+					System.out.println("¿Quiere realizar otra operasión?, -1 para salir");
+					break;
+				case 2:
+					System.out.println("Ingrese la cantidad a depositar");
+					monto=read.nextDouble();
+					cuenta.Depositar(monto);
+					System.out.println("Su saldo es: " + cuenta.getSaldo());
+					System.out.println("¿Quiere realizar otra operasión?, -1 para salir");
+					break;
+				case 3:
+					System.out.println("Su saldo es: " + cuenta.getSaldo());
+					System.out.println("¿Quiere realizar otra operasión?, -1 para salir");
+					break;
+				case 4:
+					System.out.println("Su titulsr es: " + cuenta.getTitular());
+					System.out.println("¿Quiere realizar otra operasión?, -1 para salir");
+					break;
+				case -1:
+					System.out.println("Saliendo del sistema");
+					break;
+				default:
+					System.out.println("Opción inválida");
+			}
+		}while(op!=-1);
+		read.close();
+	}
+}
